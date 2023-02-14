@@ -4,6 +4,9 @@ window.addEventListener("scroll", function () {
   header.classList.toggle("sticky", window.scrollY > 0);
 });
 
+const heroImage = document.querySelector('.hero-image');
+heroImage.innerHTML = '<img src="https://imgur.com/e7SYVZR" alt="Young Ayodele">';
+
 // Smooth scroll to the anchor links
 const links = document.querySelectorAll("nav a");
 
