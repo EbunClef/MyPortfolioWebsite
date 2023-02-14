@@ -1,21 +1,24 @@
-// Define variables for DOM elements
-const navLinks = document.querySelectorAll('nav ul li a');
-const welcomeSection = document.getElementById('welcome-section');
-
-// Add event listener to nav links to scroll to sections
-navLinks.forEach((link) => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetSection = document.querySelector(link.getAttribute('href'));
-    window.scrollTo({
-      top: targetSection.offsetTop,
-      behavior: 'smooth'
-    });
+// Add a class to the header when the user scrolls down
+window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    header.classList.toggle("sticky", window.scrollY > 0);
   });
-});
-
-// Change opacity of welcome section on scroll
-window.addEventListener('scroll', () => {
-  const opacity = 1 - window.pageYOffset / welcomeSection.offsetHeight;
-  welcomeSection.style.opacity = opacity;
-});
+  
+  // Smooth scroll to the anchor links
+  const links = document.querySelectorAll("nav a");
+  
+  for (const link of links) {
+    link.addEventListener("click", clickHandler);
+  }
+  
+  function clickHandler(e) {
+    e.preventDefault();
+    const href = this.getAttribute("href");
+    const offsetTop = document.querySelector(href).offsetTop;
+  
+    scroll({
+      top: offsetTop,
+      behavior: "smooth"
+    });
+  }
+  
